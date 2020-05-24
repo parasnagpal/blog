@@ -21,20 +21,20 @@
 
         function appendpost(post){
             $('.posts').append(
-                    `<div class="post p-4 rounded" id=${post.id}>
+                    `<div class="post rounded" id=${post.id}>
                         <div class="d-flex flex-row justify-content-between card-header text-success">
                             <div><h5>${post.title}</h5></div>
-                            <div onclick="deletepost(${post.id})" class="crsr-ptr"><i class="far fa-trash-alt"></i></div>
+                            <div onclick="deletepost(${post.id})" class="crsr-ptr text-danger"><i class="far fa-trash-alt"></i></div>
                         </div>
                         <p class="card-body">${post.body}</p>
-                        <label for="likes" class="col-sm-2 col-form-label col-form-label-sm">
+                        <label for="likes" class="col-sm-2 col-form-label col-form-label-sm text-secondary">
                             <div>
-                                <i><div id="like${post.id}">${(post.likes)?post.likes:0} likes</div></i>
+                                <b><i><div id="like${post.id}">${(post.likes)?post.likes:0} likes</div></i></b>
                             </div>
                         </label>
-                        <div class="row justify-content-center">
-                            <div class="col-12 col-md-5 col-lg-4">
-                                <button type="button" class="btn btn-light btn-lg btn-block" onclick="like(${post.id})"><i class="far fa-thumbs-up"></i></button>
+                        <div class="row justify-content-center pb-3">
+                            <div class="col-11 col-md-5 col-lg-4">
+                                <button type="button" class="btn btn-light btn-lg btn-block btn-sm" onclick="like(${post.id})"><i class="far fa-thumbs-up"></i></button>
                             </div>    
                         </div>    
                     </div>`
@@ -150,8 +150,8 @@
     <div class="navbar container-fluid">
         <h3 class="navbar-brand">Blog Posts</h3>
         <div>
-            <button class="btn btn-outline-light crsr-ptr mr-1" onclick="sortbylikes()"><i class="fas fa-sort-amount-up"></i></button>
-            <button class="btn btn-outline-light crsr-ptr ml-1" onclick="on()"><i class="fas fa-plus"></i></button>
+            <button class="btn btn-outline-light crsr-ptr mr-1 text-warning" onclick="sortbylikes()"><i class="fas fa-sort-amount-up"></i></button>
+            <button class="btn btn-outline-light crsr-ptr ml-1 text-success" onclick="on()"><i class="fas fa-plus"></i></button>
         </div> 
     </div>
     <div class="container">
