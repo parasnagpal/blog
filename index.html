@@ -22,20 +22,21 @@
         function appendpost(post){
             $('.posts').append(
                     `<div class="post p-4 rounded" id=${post.id}>
-                        <div class="d-flex flex-row justify-content-between">
+                        <div class="d-flex flex-row justify-content-between card-header text-success">
                             <div><h5>${post.title}</h5></div>
                             <div onclick="deletepost(${post.id})" class="crsr-ptr"><i class="far fa-trash-alt"></i></div>
                         </div>
-                        <p>${post.body}</p>
-                        
-                        <div class="col crsr-ptr" onclick="like(${post.id})">
-                            <i class="far fa-thumbs-up"></i>
-                        </div>
+                        <p class="card-body">${post.body}</p>
                         <label for="likes" class="col-sm-2 col-form-label col-form-label-sm">
                             <div>
-                                <b>Likes:<div id="like${post.id}">${(post.likes)?post.likes:0}</div></b>
+                                <i><div id="like${post.id}">${(post.likes)?post.likes:0} likes</div></i>
                             </div>
                         </label>
+                        <div class="row justify-content-center">
+                            <div class="col-12 col-md-5 col-lg-4">
+                                <button type="button" class="btn btn-light btn-lg btn-block" onclick="like(${post.id})"><i class="far fa-thumbs-up"></i></button>
+                            </div>    
+                        </div>    
                     </div>`
                 )
         }
@@ -103,7 +104,7 @@
                     post_data[index]["likes"]++;
                 }
             })
-            $('#like'+id).text(post_data[ind]["likes"]);
+            $('#like'+id).text(post_data[ind]["likes"]+" likes");
         }
 
         function sortbylikes(){
@@ -147,11 +148,13 @@
         </div>
     </div>
     <div class="navbar container-fluid">
-        <h3>Blog Posts</h3>
-        <button class="btn btn-outline-light crsr-ptr mr-1" onclick="sortbylikes()"><i class="fas fa-sort-amount-up"></i></button>
-        <button class="btn btn-outline-light crsr-ptr ml-1" onclick="on()"><i class="fas fa-plus"></i></button>
+        <h3 class="navbar-brand">Blog Posts</h3>
+        <div>
+            <button class="btn btn-outline-light crsr-ptr mr-1" onclick="sortbylikes()"><i class="fas fa-sort-amount-up"></i></button>
+            <button class="btn btn-outline-light crsr-ptr ml-1" onclick="on()"><i class="fas fa-plus"></i></button>
+        </div> 
     </div>
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="posts col d-flex flex-column"></div>
         </div>
