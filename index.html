@@ -28,15 +28,14 @@
                         </div>
                         <p>${post.body}</p>
                         
-                        <div class="col">
+                        <div class="col" onclick="like(${post.id})">
                             <i class="far fa-thumbs-up"></i>
                         </div>
                         <label for="likes" class="col-sm-2 col-form-label col-form-label-sm">
                             <div>
-                                <b>Likes:${(post.likes)?post.likes:0}</b>
+                                <b>Likes:<div id="like${post.id}">${(post.likes)?post.likes:0}</div></b>
                             </div>
                         </label>
-                        
                     </div>`
                 )
         }
@@ -66,13 +65,13 @@
             off()   
         }
 
-        function deletepost(e){
+        function deletepost(id){
             post_data.find(function(post,index){
-                if(post.id==e){
+                if(post.id==id){
                     delete post_data[index]
                 }
             })
-            $('#'+e).remove();
+            $('#'+id).remove();
         }
 
         function comparison_for_likes(post1,post2){
@@ -83,6 +82,19 @@
                 return 1;
             }
             else return 0;
+        }
+
+        function like(id){
+            let ind=-1
+            post_data.find(function(post,index){
+                if(post.id==id){
+                    ind=index;
+                    if(!post_data[index]["likes"])
+                        post_data[index]["likes"]=0
+                    post_data[index]["likes"]++;
+                }
+            })
+            $('#like'+id).text(post_data[ind]["likes"]);
         }
 
         function sortbylikes(){
