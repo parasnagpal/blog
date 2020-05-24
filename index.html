@@ -75,10 +75,19 @@
         }
 
         function comparison_for_likes(post1,post2){
-            if(post1.likes<post2.likes){
+            if(!post1.likes && !post2.likes){
+                return 0;
+            }
+            else if(!post1.likes){
+                return 1;
+            }
+            else if(!post2.likes){
                 return -1;
             }
             else if(post1.likes>post2.likes){
+                return -1;
+            }
+            else if(post1.likes<post2.likes){
                 return 1;
             }
             else return 0;
@@ -99,6 +108,7 @@
 
         function sortbylikes(){
             post_data.sort(comparison_for_likes);
+            console.log(post_data);
             $('.posts').html('');
             addpost_to_DOM();
         }
@@ -138,6 +148,7 @@
     </div>
     <div class="navbar container-fluid">
         <h3>Blog Posts</h3>
+        <button class="btn btn-outline-light" onclick="sortbylikes()"><i class="fas fa-sort-amount-up"></i></button>
         <button class="btn btn-outline-light" onclick="on()"><i class="fas fa-plus"></i></button>
     </div>
     <div class="container-fluid">
