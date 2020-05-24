@@ -18,25 +18,44 @@
     <script>
         let post_data=[]
         let size
-        $.get('https://jsonplaceholder.typicode.com/posts',(data)=>{
-            post_data=data;
-            data.map((post,index)=>{
-                $('.posts').append(
+
+        function appendpost(post){
+            $('.posts').append(
                     `<div class="post p-4 rounded" id=${post.id}>
                         <div class="d-flex flex-row justify-content-between">
                             <div><h5>${post.title}</h5></div>
                             <div onclick="deletepost(${post.id})"><i class="far fa-trash-alt"></i></div>
                         </div>
                         <p>${post.body}</p>
-                        <div><b>Likes:</b>${(post.likes)?post.likes:0}</div>
+                        
+                        <div class="col">
+                            <i class="far fa-thumbs-up"></i>
+                        </div>
+                        <label for="likes" class="col-sm-2 col-form-label col-form-label-sm">
+                            <div>
+                                <b>Likes:${(post.likes)?post.likes:0}</b>
+                            </div>
+                        </label>
+                        
                     </div>`
                 )
+        }
+
+        $.get('https://jsonplaceholder.typicode.com/posts',(data)=>{
+            post_data=data;
+            data.map((post)=>{
+                appendpost(post);
             })
             size=post_data.length
         })
         
     
         function deletepost(e){
+            post_data.find(function(post,index){
+                if(post.id==e){
+                    delete post_data[index]
+                }
+            })
             $('#'+e).remove();
         }
 
@@ -54,17 +73,7 @@
             post.name=$('#autor_name_input').val();
             post.body=$('#post_input').val();
             post.id=++size;
-            console.log(post)
-            $('.posts').append(
-                    `<div class="post p-4 rounded" id=${post.id}>
-                        <div class="d-flex flex-row justify-content-between">
-                            <div><h5>${post.title}</h5></div>
-                            <div onclick="deletepost(${post.id})"><i class="far fa-trash-alt"></i></div>
-                        </div>
-                        <p>${post.body}</p>
-                        <div><b>Likes:</b>${(post.likes)?post.likes:0}</div>
-                    </div>`
-                )
+            appendpost(post)
             off()   
         }
 
