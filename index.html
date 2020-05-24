@@ -24,11 +24,11 @@
                     `<div class="post p-4 rounded" id=${post.id}>
                         <div class="d-flex flex-row justify-content-between">
                             <div><h5>${post.title}</h5></div>
-                            <div onclick="deletepost(${post.id})"><i class="far fa-trash-alt"></i></div>
+                            <div onclick="deletepost(${post.id})" class="crsr-ptr"><i class="far fa-trash-alt"></i></div>
                         </div>
                         <p>${post.body}</p>
                         
-                        <div class="col" onclick="like(${post.id})">
+                        <div class="col crsr-ptr" onclick="like(${post.id})">
                             <i class="far fa-thumbs-up"></i>
                         </div>
                         <label for="likes" class="col-sm-2 col-form-label col-form-label-sm">
@@ -139,8 +139,8 @@
                       <textarea class="form-control" id="post_input" rows="3"></textarea>
                     </div>
                     <div class="form-group row justify-content-center">
-                        <button class="btn btn-light" onclick="addpost()">Post</button>
-                        <button class="btn btn-dark" onclick="off()">Cancel</button>
+                        <button class="btn btn-light crsr-ptr" onclick="addpost()">Post</button>
+                        <button class="btn btn-dark crsr-ptr" onclick="off()">Cancel</button>
                     </div>
                 </div>
             </div>
@@ -148,8 +148,8 @@
     </div>
     <div class="navbar container-fluid">
         <h3>Blog Posts</h3>
-        <button class="btn btn-outline-light" onclick="sortbylikes()"><i class="fas fa-sort-amount-up"></i></button>
-        <button class="btn btn-outline-light" onclick="on()"><i class="fas fa-plus"></i></button>
+        <button class="btn btn-outline-light crsr-ptr mr-1" onclick="sortbylikes()"><i class="fas fa-sort-amount-up"></i></button>
+        <button class="btn btn-outline-light crsr-ptr ml-1" onclick="on()"><i class="fas fa-plus"></i></button>
     </div>
     <div class="container-fluid">
         <div class="row">
